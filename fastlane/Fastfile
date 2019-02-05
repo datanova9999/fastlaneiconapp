@@ -1,0 +1,28 @@
+
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :custom_lane do
+
+                   gym(
+			    scheme: "fastlaneiconapp",  
+			    export_method:"development", 
+			    export_xcargs: "-allowProvisioningUpdates",
+			    output_directory: "/Users/kanhaiya.chaudhary/Desktop/",
+			    output_name: "DEMO",
+			    include_bitcode: false,
+			    clean: true,
+			    export_options: {
+			        uploadBitcode: false,
+			        uploadSymbols: false,
+			        compileBitcode: false,
+			        provisioningProfiles: {
+			            "com.ticketpurchasing.dni" => "TicketPurchasing"
+			          },
+			            "signingStyle": "manual"
+			          }
+			)
+  end
+end
