@@ -11,7 +11,7 @@ platform :ios do
 			    export_method:"development", 
 			    export_xcargs: "-allowProvisioningUpdates",
 			    output_directory: "/Users/kanhaiya.chaudhary/Desktop/",
-			    output_name: "DEMO",
+			    output_name: "DEMO1111",
 			    include_bitcode: false,
 			    clean: true,
 			    export_options: {
