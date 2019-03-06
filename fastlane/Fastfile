@@ -19,7 +19,7 @@ platform :ios do
   desc "Description of what the lane does"
   lane :custom_lane do
   sync_code_signing(type: "appstore")  # see code signing guide for more information
-  build_app(scheme: "Generic App")
+  build_app(scheme: "fastlaneiconapp")
   #upload_to_app_store                  # upload your app to App Store Connect
   deliver(
     submit_for_review: true,
