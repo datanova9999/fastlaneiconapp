@@ -22,7 +22,7 @@ platform :ios do
   build_app(scheme: "fastlaneiconapp")
   #upload_to_app_store                  # upload your app to App Store Connect
   deliver(
-    submit_for_review: true,
+    submit_for_review: false,
     force: true,
   )
     # add actions here: https://docs.fastlane.tools/actions
