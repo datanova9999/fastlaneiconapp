@@ -4,7 +4,7 @@ clone_branch_directly(true)
 
 storage_mode("git")
 
-type("development")
+type("appstore")
 
 app_identifier(["com.FastlaneGeneric.dni"])
 
