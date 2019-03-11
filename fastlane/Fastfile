@@ -1,34 +1,39 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
 
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-  get_build_number
-  increment_build_number
-  'build_number = increment_build_number'
-  sync_code_signing(type: "appstore")  # see code signing guide for more information
-  build_app(scheme: "fastlaneiconapp")
-  #upload_to_app_store                  # upload your app to App Store Connect
-  deliver(
-    submit_for_review: true,
-    force: true,
-  )
 
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "This Lane Will Upload IPA to App Store"
+  lane :generic_release do
+
+  	sync_code_signing(type: "appstore")
+  	build_app(scheme: "fastlaneiconapp")
+  	deliver(submit_for_review: false,force: true,)
+
+  end
+
+lane :generic_debug do
+ 
+	 sync_code_signing(type: "development")
+  	 build_app(scheme: "fastlaneiconapp")
+
+			gym(
+			    scheme: ENV['SCHEME'],  
+			    export_method:"development", 
+			    export_xcargs: "-allowProvisioningUpdates",
+			    output_directory: ENV['IPA_PATH'],
+			    output_name: ENV['OUTPUT_NAME'],
+			    include_bitcode: false,
+			     export_options: {
+			        uploadBitcode: false,
+			        uploadSymbols: false,
+			        compileBitcode: false,
+			        provisioningProfiles: {
+			            ENV['BUNDLE_IDENTIFIER'] => ENV['PROVISION_NAME']
+			          },
+			            "signingStyle": ENV['SIGNING_STYLE']
+			          }
+			)
+
   end
 end
